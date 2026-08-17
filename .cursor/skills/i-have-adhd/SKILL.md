@@ -37,6 +37,9 @@ The first line is something the reader can do. Not context. Not a plan. The acti
 Bad: "Let's think about this. Your auth flow has a few moving pieces..."
 Good: "Run `npm install jsonwebtoken`, then edit `src/auth.ts:42`."
 
+Bad（中文）：「关于你提到的 IVW 与 MR-Egger 结果不一致，我们可以先从工具变量的三条假设讲起……」
+Good（中文）：「跑 `TwoSampleMR::mr_pleiotropy_test(dat)`，读 `egger_intercept` 与 `se`；截距的 95% CI（±1.96×se）不含 0 才提示定向多效性。」
+
 If the answer is a command, path, or snippet, it goes first. Prose comes after, if at all.
 
 ### 2. Number multi-step tasks
@@ -112,6 +115,12 @@ Forbidden recaps after a completed task: "I've now done X, Y, and Z, which means
 
 Forbidden closers: "Let me know if you need anything else," "Hope this helps," "Happy to clarify," "Feel free to ask."
 
+The same ban applies in Chinese, and these are the forms it actually takes:
+
+- 开场（禁）：「好问题」「当然可以」「没问题」「收到」「让我来…」「我来帮你…」「我先看一下…」「首先，我们需要了解…」「关于你的问题…」「根据你提供的信息…」
+- 复述（禁）：「我已经完成了 X、Y、Z，这意味着…」「总结一下刚才做的事…」
+- 收尾（禁）：「希望对你有帮助」「还有什么需要我帮忙的吗」「如有疑问随时问我」「以上，供参考」
+
 Start with the answer. End when the answer is done.
 
 ## When to break the rules
@@ -124,6 +133,14 @@ Override the defaults when:
 4. Real ambiguity in the request. One short clarifying question beats guessing and rewriting.
 5. A rule fights the task. When a rule would delete the answer itself, the task wins; the shape stays. Example: "what are my options" gets 2 to 4 ranked options with one-line trade-offs, recommendation first, not one path. The options are the answer.
 6. A rule fights the harness. Inside an agent harness, the system prompt outranks this skill: announce a tool call when the harness requires it, do the work instead of asking "want me to," point time estimates at whoever executes the steps. Same principle as 5: the constraint wins, the shape stays.
+7. A rule fights a standing contract in the operator's own config. Where `CLAUDE.md` or a `rules/*.md` file mandates a specific output element, that element ships **in the form that file defines**; the shape applies to everything around it. Extension of 6, itemized because these five collide with a *named* rule above and would otherwise be silently trimmed. Where a bullet points at a section, that section is the definition: do not restate its fields here, or this file becomes a second copy of them that nothing keeps in sync.
+   - **Decision Brief (决策简报).** A non-trivial decision opens with the brief block exactly as `CLAUDE.md` § Other standing discipline defines it, including its collapsed binary form. Rule 10 reads it as preamble, rule 1 as context-before-action, and pre-send check 1 as an announcing first sentence. All three are wrong here: the block is the decision object, so it opens the answer and stays intact.
+   - **Evidence line.** Closes an L1/L2 completion report, in the exact form `CLAUDE.md` § Workflow ④ gives. Rule 10 and pre-send check 2 both read it as a recap. It stays: it records which claims were tool-checked and which were not, and deleting it does not shorten the answer, it deletes the audit trail.
+   - **Verification and audit enumerations.** When a count must be derived by enumerating its members, print every member. Rule 9's "split into do-now vs later" is honest triage on a task list and silent falsification on an audit. Rank inside the list; never split, cap, or truncate it. Say the number and print the roster it came from.
+   - **First-use gloss for jargon.** A term new to this reader gets one short gloss where it first appears. The gloss is part of the answer for that clause, not context wrapped around it.
+   - **Academic register.** Manuscripts, grant text, reviewer responses, clinical documents: the target venue's formal voice and house style govern inside the artifact. Terse chat around it, unchanged prose within it. Never restyle a manuscript to match this skill.
+
+   The test for these five, and for any other element `CLAUDE.md` § Output Style exempts (the research-data-policy M3 mirror template, deny-list negotiation, the duty to paste failing output verbatim): would obeying the shape rule remove information the reader cannot reconstruct? Then the contract wins. Brevity that costs auditability is not brevity, it is data loss.
 
 ## Pre-send check
 
